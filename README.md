@@ -1,9 +1,7 @@
-# code-20210602-qaisqadri
-
 # BMI calculator along with the tests
 
 ## Python BMI Calculator Coding Challenge
-Problem Statement
+Problem Statement:<br/>
 Given the following JSON data
 `[{"Gender": "Male", "HeightCm": 171, "WeightKg": 96 }, { "Gender": "Male", "HeightCm": 161, "WeightKg":
 85 }, { "Gender": "Male", "HeightCm": 180, "WeightKg": 77 }, { "Gender": "Female", "HeightCm": 166,
@@ -27,13 +25,12 @@ added to an automation build / test / deployment pipeline
 
 - clone the repo
 - setup virutal env and install python dependencies with **pip install -r requirements.txt**
-- next we have give in the path to the json file and the result type in the calculate_bmi.py (at the end)
+- next we have to set in the path to the json file and the result type in the calculate_bmi.py (at the end)
 - There is also parallelize option which is discussed below.
 
 
 ## Working:
-For the First and Second Point, [calculate_bmi.py](calculate_bmi.py) contains
-The py file contains:
+For the First and Second Point, [calculate_bmi.py](calculate_bmi.py) contains:<br/>
 - MAPPING which is the mapping of range of BMI values and their relation with the BMI category and Health Risk.
 - 6 functions which break down the problems and solve step by step in function named main.
 For the Thrid The Test point, the Test cases are written in [test_calculate_bmi.py](calculate_bmi.py) and pytest is used for these.
@@ -46,9 +43,10 @@ I have also added the bit to parallelize the most critical function (generate_da
 
 A comparsion of pandarallel and swifter for 6 lac records for the generate_data function is dipicted below
 ![comparison](comparison.png)
-
+clearly pandarallel outperforms swifter hence that is used.
 
 reference:
+<br/>
 pandarallel https://github.com/nalepae/pandarallel
 swifter https://github.com/jmcarpenter2/swifter
 
