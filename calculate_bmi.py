@@ -2,6 +2,13 @@ import json
 import pandas as pd
 import math
 
+PARALLELIZE = False
+
+if PARALLELIZE:
+    from pandarallel import pandarallel
+    NUM_OF_CORES = 12
+    pandarallel.initialize(nb_workers = NUM_OF_CORES)
+
 # the mapping representing BMI category with BMI value range and health risk
 MAPPING = {
     "Underweight"            : {'lower' : -math.inf, 'upper' : 18.49,    "risk" : 'Malnutrition Risk'},
@@ -141,7 +148,12 @@ def main(json_file_path, result_file_type = 'csv'):
 
     df = pd.DataFrame(data)
 
-    df = df.apply(generate_data, axis = 1)
+    if not PARALLELIZE:
+        # run in single core mode
+        df = df.apply(generate_data, axis = 1)
+    else:
+        # run in parallel mode
+        df = df.parallel_apply(generate_data, axis=1)
 
     if result_file_type == 'json':
         file_name = "result.csv"
@@ -155,7 +167,7 @@ def main(json_file_path, result_file_type = 'csv'):
 
     # 2) Count the total number of overweight people using ranges in the column BMI
     # Category of ​ Table 1,​ check this is consistent programmatically and add any other
-    # observations in the documentation
+    # observations in the documentation 
 
     check_category = 'Overweight'
 
@@ -173,6 +185,10 @@ def main(json_file_path, result_file_type = 'csv'):
 
 if __name__ == '__main__':
 
-    # main("json_data.json")
-    main('big_json.json')
+    # json_file_path = 'big_json.json'
+    json_file_path = 'json_data.json'
+    result_file_type = 'csv' #or json
+    # main(json_file_path)
+    # main(json_file_path) # by default result file will be csv
+    main(json_file_path, result_file_type = result_file_type ) 
 
