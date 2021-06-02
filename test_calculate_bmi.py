@@ -11,7 +11,6 @@ from calculate_bmi import get_category_and_risk
 from calculate_bmi import generate_data
 from calculate_bmi import verify_count
 from calculate_bmi import get_counts_from_ranges
-from calculate_bmi import MAPPING
 
 import pandas as pd
 import json
@@ -47,7 +46,7 @@ def df_res():
                             (170, 0, 0)
                             ])
 def test_cal_bmi(heightcm, weight, bmi):
-    """Assert that BMI is calculate correctly."""
+    """Assert that BMI is calculated correctly."""
 
     assert cal_bmi(heightcm, weight) == bmi
     assert cal_bmi(heightcm/100, weight, cm=False) == bmi
@@ -62,7 +61,7 @@ def test_cal_bmi(heightcm, weight, bmi):
                             (1.70, 0, 0),
                             ])
 def test_cal_bmi_in_meters(heightm, weight, bmi):
-    """Assert that BMI is calculate correctly when height is passed in meters, in such case set cm=False."""
+    """Assert that BMI is calculated correctly when height is passed in meters, in such case set cm=False."""
 
     assert cal_bmi(heightm, weight, cm=False) == bmi
 
@@ -89,7 +88,7 @@ def test_cal_bmi_two_decimals(heightcm, weight):
                             (0, 'Underweight', 'Malnutrition Risk'),
                             ])
 def test_get_category_and_risk(bmi_value, result_category, result_risk):
-    """Assert that based on BMI value BMI category and Health risk is calculate correctly."""
+    """Assert that based on BMI value BMI category and Health risk is calculated correctly."""
 
     assert get_category_and_risk(bmi_value) == (result_category, result_risk)
 
