@@ -45,7 +45,8 @@ For the purpose of larger data and scaling up, I suggest the parallelization app
 I have also added the bit to parallelize the most critical function (generate_data) over the DataFrame using pandarallel and for that one has to set the setting variable at line 5 in calculate_bmi.py to True. But Please Note this should be done only in case of larger data, otherwise for smaller data it will bring performance drop instead.
 
 A comparsion of pandarallel and swifter for 6 lac records for the generate_data function is dipicted below
-![comparison](comparision.png)
+![comparison](comparison.png)
+
 
 reference:
 pandarallel https://github.com/nalepae/pandarallel
